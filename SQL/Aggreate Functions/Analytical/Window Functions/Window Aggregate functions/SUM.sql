@@ -32,3 +32,13 @@ AVG(COALESCE(Score,0)) Over() Avg_Score
 FROM Sales.Customers
 
 
+-- Find all the orders where sales are higher than the average sales across all orders
+SELECT *
+FROM
+(
+SELECT OrderID,
+ProductID,Sales,
+AVG(COALESCE(Sales,0))OVER() AvgSales
+FROM Sales.Orders
+)t
+WHERE Sales > AvgSales
