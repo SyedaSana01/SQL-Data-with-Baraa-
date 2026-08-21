@@ -34,6 +34,27 @@ FROM
  )AS x
  );
 
+--4 . Find the customer(s) who placed the most orders.
+SELECT *
+FROM 
+(
+SELECT CustomerID,
+COUNT(*) as TotalOrders
+FROM Sales.Orders
+GROUP BY CustomerID
+)t
+WHERE TotalOrders =
+(
+select MAX(TotalOrders)
+FROM 
+(
+SELECT CustomerID,
+COUNT(*) as TotalOrders
+FROM Sales.Orders
+GROUP BY CustomerID
+) AS X
+);
+
 
 
 
