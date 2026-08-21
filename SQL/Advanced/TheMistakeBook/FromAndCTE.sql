@@ -16,10 +16,11 @@ FROM
  SUM(Sales) AS TotalSales
  FROM Sales.Orders
  GROUP BY CustomerID
- )AS x
+ )AS c
  );
 
  --LETS SOLVE THIS USING CTE 
+
  WITH CTE_TotalSales AS 
 (
 SELECT CustomerID,
